@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback } from "react"
+import React, { useEffect, useState, useRef, useCallback } from "react"
 import { supabase } from "../../lib/supabase"
 import type { User } from "@supabase/supabase-js"
 
@@ -4400,7 +4400,7 @@ export default function GolfPlatform() {
     id: NavSection
     label: string
     group: string
-    icon: JSX.Element
+    icon: React.ReactNode
   }[] = [
     {
       id: "overview",
@@ -4485,7 +4485,7 @@ export default function GolfPlatform() {
     id: AdminSection
     label: string
     group: string
-    icon: JSX.Element
+    icon: React.ReactNode
   }[] = [
     {
       id: "admin-overview",
@@ -4557,7 +4557,7 @@ export default function GolfPlatform() {
     },
   ]
 
-  const USER_TITLES: Record<NavSection, JSX.Element> = {
+  const USER_TITLES: Record<NavSection, React.ReactNode> = {
     overview: (
       <>
         Good {greeting}, <em>{firstName}.</em>
@@ -4595,7 +4595,7 @@ export default function GolfPlatform() {
     ),
   }
 
-  const ADMIN_TITLES: Record<AdminSection, JSX.Element> = {
+  const ADMIN_TITLES: Record<AdminSection, React.ReactNode> = {
     "admin-overview": (
       <>
         Admin <em>Overview</em>
