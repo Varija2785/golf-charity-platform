@@ -134,7 +134,7 @@ const PRIZE_5 = Math.round(POOL_TOTAL * 0.4)
 const PRIZE_4 = Math.round((POOL_TOTAL * 0.35) / 3)
 const PRIZE_3 = Math.round((POOL_TOTAL * 0.25) / 8)
 
-const ADMIN_EMAIL = "admin@fairwayforward.co.uk"
+const ADMIN_EMAIL = "admin@fairwayflow.co.uk"
 const ADMIN_PASSWORD = "Admin@FF2026"
 
 const CURRENT_MONTH = new Date().toISOString().slice(0, 7)
@@ -186,34 +186,53 @@ const QP = [10, 18, 24, 30, 36]
 
 // ─── CSS ──────────────────────────────────────────────────────────────────────
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap');
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
-  --g1:#E8B84B;--g2:#F5D57A;--g3:#B8922A;--g4:#7A5C10;
-  --bg:#07060A;--bg2:#0F0D16;--bg3:#171420;--bg4:#1E1A2C;
-  --t1:#FFFFFF;--t2:#F8F0E0;--t3:#EAD6B0;--t4:#C8AA78;--t5:#8A7055;--t6:#3A2A1A;
-  --b1:rgba(232,184,75,.13);--b2:rgba(232,184,75,.30);--b3:rgba(232,184,75,.55);
-  --green:#4DD97A;--green-bg:rgba(77,217,122,.07);--green-b:rgba(77,217,122,.24);
-  --red:#E05555;--red-bg:rgba(224,85,85,.07);--red-b:rgba(224,85,85,.22);
-  --blue:#5B9EF5;--blue-bg:rgba(91,158,245,.07);--blue-b:rgba(91,158,245,.25);
-  --amber:#F5A623;--amber-bg:rgba(245,166,35,.07);--amber-b:rgba(245,166,35,.28);
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
+  /* Beautiful pastel color palette */
+  --bg-primary:#fef7f0;--bg-secondary:#fdf3e8;--bg-tertiary:#fcefdc;--bg-card:#ffffff;
+  --text-primary:#2d3748;--text-secondary:#4a5568;--text-tertiary:#718096;--text-muted:#a0aec0;
+  --accent-primary:#b794f6;--accent-secondary:#f687b3;--accent-light:#fed7e2;
+  --border-light:#e2e8f0;--border-medium:#cbd5e0;
+  --shadow-light:rgba(0,0,0,.05);--shadow-medium:rgba(0,0,0,.1);
+  
+  /* Status colors */
+  --success:#48bb78;--success-bg:rgba(72,187,120,.07);--success-b:rgba(72,187,120,.24);
+  --warning:#ed8936;--warning-bg:rgba(237,137,54,.07);--warning-b:rgba(237,137,54,.22);
+  --error:#f56565;--error-bg:rgba(245,101,101,.07);--error-b:rgba(245,101,101,.22);
+  --info:#4299e1;--info-bg:rgba(66,153,225,.07);--info-b:rgba(66,153,225,.25);
+  
+  /* Font families */
+  --font-text:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-numbers:'Courier Prime','Courier New',monospace;
+  
+  /* Legacy variables for compatibility */
+  --g1:#b794f6;--g2:#f687b3;--g3:#9f7aea;--g4:#fed7e2;
+  --bg:var(--bg-primary);--bg2:var(--bg-secondary);--bg3:var(--bg-tertiary);--bg4:var(--bg-card);
+  --t1:var(--text-primary);--t2:var(--text-secondary);--t3:var(--text-tertiary);--t4:var(--text-muted);--t5:var(--text-muted);--t6:var(--text-muted);
+  --b1:var(--border-light);--b2:var(--border-medium);--b3:var(--border-medium);
+  --green:var(--success);--green-bg:var(--success-bg);--green-b:var(--success-b);
+  --red:var(--error);--red-bg:var(--error-bg);--red-b:var(--error-b);
+  --blue:var(--info);--blue-bg:var(--info-bg);--blue-b:var(--info-b);
+  --amber:var(--warning);--amber-bg:var(--warning-bg);--amber-b:var(--warning-b);
+  --serif:var(--font-numbers);--sans:var(--font-text);
+  
+  /* Animations & spacing */
   --e1:cubic-bezier(.25,.46,.45,.94);
   --e2:cubic-bezier(.16,1,.3,1);
   --e3:cubic-bezier(.34,1.56,.64,1);
   --r:4px;--r2:8px;--r3:12px;
   --nav:64px;
   --sidebar:240px;
-  --shadow:0 8px 32px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.3);
-  --shadow-gold:0 0 0 1px rgba(232,184,75,.2),0 8px 32px rgba(232,184,75,.08);
+  --shadow:0 4px 20px var(--shadow-light),0 2px 8px var(--shadow-medium);
+  --shadow-gold:0 0 0 1px var(--border-light),0 4px 20px var(--shadow-light);
 }
 
 html,body{
   background:var(--bg);color:var(--t1);
-  font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.6;
+  font-family:var(--font-text);font-weight:400;font-size:15px;line-height:1.6;
   overflow-x:clip;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
 }
 input,select,button,textarea{font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
@@ -240,13 +259,22 @@ button{cursor:pointer;}
 @keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{0%{opacity:0;transform:scale(.2) rotate(-20deg)}60%{transform:scale(1.14) rotate(4deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.4)}}
-@keyframes goldPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,184,75,0)}50%{box-shadow:0 0 0 6px rgba(232,184,75,.12)}}
-@keyframes winnerGlow{0%,100%{box-shadow:var(--shadow)}50%{box-shadow:0 0 40px rgba(232,184,75,.35),var(--shadow)}}
+@keyframes goldPulse{0%,100%{box-shadow:0 0 0 0 rgba(102,126,234,0)}50%{box-shadow:0 0 0 6px rgba(102,126,234,.12)}}
+@keyframes winnerGlow{0%,100%{box-shadow:var(--shadow)}50%{box-shadow:0 0 40px rgba(102,126,234,.35),var(--shadow)}}
 @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes ripple{0%{transform:scale(0);opacity:.6}100%{transform:scale(4);opacity:0}}
 @keyframes navPop{0%{transform:translateY(4px) scale(.9)}100%{transform:translateY(0) scale(1)}}
 @keyframes drawerIn{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+
+/* 🌟 New Light Animations */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes glow{0%,100%{background:var(--bg-card);box-shadow:0 4px 20px var(--shadow-light)}50%{background:var(--accent-light);box-shadow:0 8px 32px rgba(102,126,234,.15)}}
+@keyframes slideInFade{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}25%{transform:translateY(-5px)}50%{transform:translateY(0)}75%{transform:translateY(-2px)}}
+@keyframes wave{0%{transform:rotate(0deg)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}60%{transform:rotate(0deg)}100%{transform:rotate(0deg)}}
+@keyframes lightSweep{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.02);opacity:0.8}}
 
 /* ── PAGE TRANSITION ── */
 .page-enter{animation:scaleIn .32s var(--e2) both;}
@@ -316,7 +344,7 @@ button{cursor:pointer;}
   font-size:10px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--t5);cursor:pointer;border-radius:6px;
 }
-.auth-tab.active{background:var(--bg3);color:var(--t1);box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.auth-tab.active{background:var(--bg3);color:var(--t1);box-shadow:0 2px 8px rgba(183,148,246,.2);}
 .auth-heading{font-family:var(--serif);font-size:30px;font-weight:300;margin-bottom:5px;color:var(--t1);}
 .auth-sub{font-size:13px;color:var(--t4);margin-bottom:24px;line-height:1.65;}
 .field{margin-bottom:14px;}
@@ -326,10 +354,10 @@ button{cursor:pointer;}
   border:1.5px solid var(--b1);color:var(--t1);
   font-size:16px;padding:14px;outline:none;
   border-radius:var(--r2);-webkit-appearance:none;
-  box-shadow:inset 0 1px 3px rgba(0,0,0,.2);
+  box-shadow:inset 0 1px 3px rgba(183,148,246,.1);
 }
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--b2);background:rgba(232,184,75,.025);}
-.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.2);}
+.field input::placeholder,.field textarea::placeholder{color:var(--t5);}
 .field select option{background:var(--bg3);}
 .field-error{margin-top:5px;font-size:12px;color:var(--red);}
 .btn-gold{
@@ -450,7 +478,7 @@ button{cursor:pointer;}
 .topbar{
   padding:18px 36px;border-bottom:1px solid var(--b1);
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(7,6,10,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  background:var(--bg-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   position:sticky;top:0;z-index:50;
 }
 .topbar-title{font-family:var(--serif);font-size:22px;font-weight:300;}
@@ -466,7 +494,7 @@ button{cursor:pointer;}
 .mob-menu-btn svg{width:18px;height:18px;stroke:var(--g1);fill:none;stroke-width:1.8;}
 
 /* ── Mobile overlay + drawer ── */
-.mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;opacity:0;pointer-events:none;transition:opacity .28s var(--e1);}
+.mob-overlay{position:fixed;inset:0;background:rgba(183,148,246,.3);z-index:200;opacity:0;pointer-events:none;transition:opacity .28s var(--e1);}
 .mob-overlay.open{opacity:1;pointer-events:all;}
 .mob-drawer{
   position:fixed;left:0;top:0;bottom:0;width:282px;
@@ -490,7 +518,7 @@ button{cursor:pointer;}
 .mob-bottom-nav{
   display:none;position:fixed;bottom:0;left:0;right:0;
   height:var(--nav);
-  background:rgba(15,13,22,.97);
+  background:var(--bg-card);
   backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
   border-top:1px solid var(--b1);z-index:150;
   padding:0 4px env(safe-area-inset-bottom);align-items:stretch;
@@ -512,14 +540,25 @@ button{cursor:pointer;}
 }
 
 /* ═══════════════════════════════════════════
-   CARDS
+   CARDS - Enhanced with Animations
 ═══════════════════════════════════════════ */
 .card{
-  background:var(--bg2);border:1px solid var(--b1);
+  background:var(--bg-card);border:1px solid var(--border-light);
   padding:22px;border-radius:var(--r2);
-  transition:border-color .22s var(--e1),box-shadow .22s var(--e1);
+  transition:all .3s var(--e2);
+  position:relative;overflow:hidden;
 }
-.card:hover{border-color:var(--b2);box-shadow:0 4px 24px rgba(0,0,0,.2);}
+.card::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(102,126,234,.1),transparent);
+  transition:left 0.6s var(--e2);
+}
+.card:hover{
+  border-color:var(--accent-primary);
+  box-shadow:0 8px 32px rgba(102,126,234,.15);
+  transform:translateY(-2px);
+}
+.card:hover::before{left:100%;}
 .card-title{font-family:var(--serif);font-size:19px;font-weight:300;line-height:1.2;}
 .card-title em{color:var(--g1);font-style:italic;}
 .card-sub{font-size:12px;color:var(--t4);margin-top:3px;}
@@ -787,9 +826,9 @@ button{cursor:pointer;}
 .set-field-row{display:flex;flex-direction:column;gap:7px;width:100%;}
 .set-field-row label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--t4);font-weight:400;}
 .set-field-input-row{display:flex;gap:10px;align-items:center;width:100%;}
-.set-field-input-row .field-input{flex:1;min-width:0;background:rgba(255,255,255,.04);border:1.5px solid var(--b1);color:var(--t1);font-size:15px;padding:12px 14px;outline:none;border-radius:var(--r2);-webkit-appearance:none;box-shadow:inset 0 1px 3px rgba(0,0,0,.15);}
+.set-field-input-row .field-input{flex:1;min-width:0;background:rgba(255,255,255,.04);border:1.5px solid var(--b1);color:var(--t1);font-size:15px;padding:12px 14px;outline:none;border-radius:var(--r2);-webkit-appearance:none;box-shadow:inset 0 1px 3px rgba(183,148,246,.1);}
 .set-field-input-row .field-input:focus{border-color:var(--b2);}
-.set-field-input-row .field-input::placeholder{color:rgba(255,255,255,.2);}
+.set-field-input-row .field-input::placeholder{color:var(--t5);}
 .set-field-input-row .btn{flex-shrink:0;white-space:nowrap;}
 .set-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid rgba(232,184,75,.07);}
 .set-toggle-row:last-child{border-bottom:none;}
@@ -810,7 +849,7 @@ button{cursor:pointer;}
 .set-profile-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;background:var(--green-bg);border:1px solid var(--green-b);color:var(--green);font-size:9px;letter-spacing:.14em;text-transform:uppercase;border-radius:20px;margin-top:6px;}
 
 /* ─ MODAL bottom sheet ─ */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:500;display:flex;align-items:flex-end;justify-content:center;padding:0;}
+.overlay{position:fixed;inset:0;background:rgba(183,148,246,.4);z-index:500;display:flex;align-items:flex-end;justify-content:center;padding:0;}
 .modal{
   background:var(--bg2);border:1px solid var(--b1);border-bottom:none;
   padding:28px 24px 36px;width:100%;max-width:100%;
@@ -852,9 +891,9 @@ button{cursor:pointer;}
 .toasts{position:fixed;top:16px;right:14px;left:14px;z-index:9000;display:flex;flex-direction:column;gap:7px;pointer-events:none;}
 .toast{
   display:flex;align-items:center;gap:9px;padding:13px 15px;
-  background:rgba(15,13,22,.96);border:1px solid var(--b1);
+  background:var(--bg4);border:1px solid var(--b1);
   font-size:13px;color:var(--t1);
-  box-shadow:0 12px 40px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3);
+  box-shadow:0 12px 40px rgba(183,148,246,.15),0 2px 8px rgba(183,148,246,.1);
   border-radius:var(--r2);
   animation:fadeDown .3s var(--e2) both;
   backdrop-filter:blur(16px);
@@ -3185,7 +3224,7 @@ export default function GolfPlatform() {
             </div>
           </div>
           <div className="info-box">
-            <strong>Claiming prizes:</strong> Upload a screenshot of your Stableford scores as proof. Admin verifies within 72 hours and marks your payout as paid — which credits your wallet. Contact <span style={{ color: "var(--g1)" }}>winners@fairwayforward.co.uk</span> for support.
+            <strong>Claiming prizes:</strong> Upload a screenshot of your Stableford scores as proof. Admin verifies within 72 hours and marks your payout as paid — which credits your wallet. Contact <span style={{ color: "var(--g1)" }}>winners@fairwayflow.co.uk</span> for support.
           </div>
         </div>
       </div>
@@ -4649,7 +4688,7 @@ export default function GolfPlatform() {
       {view === "loading" && (
         <div className="screen-loading page-fade">
           <div className="loading-logo">
-            Fairway <em>&</em> Forward
+            Fairway <em>Flow</em>
           </div>
           <div className="loading-tagline">
             Golf · Charity · Monthly Draws
@@ -4665,7 +4704,7 @@ export default function GolfPlatform() {
         <div className="screen-auth page-fade">
           <div className="auth-hero">
             <div className="auth-hero-logo">
-              Fairway <em>&</em> Forward
+              Fairway <em>Flow</em>
             </div>
             <div className="auth-badge">
               <div className="auth-badge-dot" />
@@ -4800,7 +4839,7 @@ export default function GolfPlatform() {
       {view === "subscribe" && (
         <div className="screen-sub page-fade">
           <div className="sub-logo">
-            Fairway <em>&</em> Forward
+            Fairway <em>Flow</em>
           </div>
           <h1 className="sub-headline">
             Choose Your <em>Plan</em>
@@ -5032,7 +5071,7 @@ export default function GolfPlatform() {
           <aside className="sidebar admin-mode">
             <div className="sb-brand">
               <div className="sb-brand-name">
-                Fairway <em>&</em> Forward
+                Fairway <em>Flow</em>
               </div>
               <div className="sb-brand-sub admin">Admin Panel</div>
             </div>
