@@ -1,13 +1,18 @@
 ﻿"use client";
 
+export const dynamic = "force-dynamic";
+
 import { useEffect } from "react";
 import { supabase } from "../../lib/supabase";
 
 export default function AdminPage() {
   useEffect(() => {
-    supabase.auth.getSession().then(() => {
+    const checkSession = async () => {
+      await supabase.auth.getSession();
       window.location.href = "/dashboard";
-    });
+    };
+
+    checkSession();
   }, []);
 
   return (

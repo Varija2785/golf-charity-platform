@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from "react"
 import { supabase } from "../../lib/supabase"
-import type { User } from "@supabase/supabase-js"
+import type { User, Session } from "@supabase/supabase-js"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type AppView = "loading" | "auth" | "subscribe" | "dashboard" | "admin"
@@ -1547,13 +1547,13 @@ export default function GolfPlatform() {
   )
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }: { data: { session: Session | null } }) => {
       if (session?.user) bootstrap(session.user)
       else setView("auth")
     })
     const {
       data: { subscription: sub },
-    } = supabase.auth.onAuthStateChange((_ev, session) => {
+    } = supabase.auth.onAuthStateChange((event: string, session: Session | null) => {
       if (!session) {
         setUser(null)
         setView("auth")
