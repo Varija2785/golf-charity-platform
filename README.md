@@ -2,6 +2,10 @@
 
 A full-stack web application that combines golf scoring, subscription-based rewards, and charitable giving.
 
+## 🌐 Live Demo
+
+[View Live Application](https://golf-charity-platform-beryl-one.vercel.app/)
+
 ## ✨ Features
 
 - 🔐 User authentication
